@@ -27,8 +27,8 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 	var state = {
 		checked: false,
 		enabled: true,
-		tabIndex: -1,
-	}
+		tabIndex: -1
+	};
 	
 	$.extend(state, options);
 	
