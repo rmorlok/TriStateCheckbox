@@ -1,0 +1,4 @@
+Tri-state checkbox
+Copyright 2010, Steel Underpants Software (Ryan Morlok)
+Released under the MIT, BSD, and GPL Licenses (all versions).  
+See licenses directories for copies of the MIT, BSD, and GLP v3 licenses.

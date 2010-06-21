@@ -1,0 +1,109 @@
+<!--
+/* Tri-state checkbox demo
+ * demo.html
+ * Copyright 2010, Steel Underpants Software (Ryan Morlok)
+ * Released under the MIT, BSD, and GPL Licenses.
+ */
+-->
+<html>
+<head>
+<title>Tri-State Checkbox Demo</title>
+<link rel="stylesheet" type='text/css' media='all' href="css/TriStateCheckbox.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/TriStateCheckbox.js"></script>
+</head>
+<body>
+	<span id="enabled"></span> Enabled
+	<style type="text/css">
+		.demo { font-face: sans-serif; }
+		.demo ul { list-style: none; }
+	</style>
+	<div class="demo">
+		<ul>
+			<li>
+				<span id="a1"></span> Dog
+				<ul>
+					<li><span id="a11"></span> Golden Retriever</li>
+					<li><span id="a12"></span> Cocker Spanial</li>
+				</ul>
+			</li>
+			<li>
+				<span id="a2"></span> Cat
+				<ul>
+					<li><span id="a21"></span> Tabby</li>
+					<li><span id="a22"></span> Calico</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var enabled = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: true, tabIndex: 1});
+		var a1 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 2});
+		var a2 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 3});
+		var a11 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 4});
+		var a12 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 5});
+		var a21 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 6});
+		var a22 = new SteelUnderpants.TriStateCheckbox({enabled: true, checked: false, tabIndex: 7});
+		
+		var treeCheckboxes = [a1, a2, a11, a12, a21, a22];
+		
+		$(enabled).bind("checked", function() {
+			$(treeCheckboxes).each(function() {
+				this.enabled(enabled.checked());
+			})
+		})
+		
+		$(a1).bind("checked", function() {
+			var checked = this.checked();
+			if( checked != "mixed" ) {
+				$([a11, a12]).each(function() {
+					this.checked(checked);
+				});
+			}
+		});
+		
+		$(a2).bind("checked", function() {
+			var checked = this.checked();
+			if( checked != "mixed" ) {
+				$([a21, a22]).each(function() {
+					this.checked(checked);
+				});
+			}
+		});
+		
+		$([a11, a12]).bind("checked", function() {
+			var checkedCount = 0;
+			$([a11, a12]).each(function() {
+				if( this.checked() )
+					checkedCount++;
+			});
+			
+			switch(checkedCount) {
+				case 0: a1.checked(false); break;
+				case 1: a1.checked("mixed"); break;
+				case 2: a1.checked(true); break;
+			}
+		});
+		
+		$([a21, a22]).bind("checked", function() {
+			var checkedCount = 0;
+			$([a21, a22]).each(function() {
+				if( this.checked() )
+					checkedCount++;
+			});
+			
+			switch(checkedCount) {
+				case 0: a2.checked(false); break;
+				case 1: a2.checked("mixed"); break;
+				case 2: a2.checked(true); break;
+			}
+		});
+		$("#enabled").append(enabled);
+		$("#a1").append(a1);
+		$("#a2").append(a2);
+		$("#a11").append(a11);
+		$("#a12").append(a12);
+		$("#a21").append(a21);
+		$("#a22").append(a22);
+	</script>
+</body>
