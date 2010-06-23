@@ -32,12 +32,14 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 	
 	$.extend(state, options);
 	
-	var me = $(document.createElement("a"))
-		.attr("role", "checkbox")
-		.attr("aria-checked", state.checked.toString())
-		.attr("aria-disabled", (!state.enabled).toString())
-		.attr("tabindex", state.tabIndex.toString())
-		.addClass(CLASSES.triStateCheckbox)
+	var me = document.createElement("a");
+	me.setAttribute("role", "checkbox");
+	me.setAttribute("aria-checked", state.checked.toString());
+	me.setAttribute("aria-disabled", (!state.enabled).toString());
+	me.setAttribute("tabindex", state.tabIndex.toString());
+	me.className = CLASSES.triStateCheckbox;
+	
+	$(me)
 		.bind("click.internal", function() {
 			if( state.enabled )
 				me.checked(state.checked === "mixed" || !state.checked);
@@ -61,22 +63,16 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 
 			if( !val || val === "false" ) {
 				state.checked = false;
-				$(me)
-					.attr("aria-checked", "false")
-					.removeClass(CLASSES.mixed)
-					.removeClass(CLASSES.checked);
+				me.setAttribute("aria-checked", "false");
+				me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : CLASSES.disabled);
 			} else if( val === "mixed" ) {
 				state.checked = "mixed";
-				$(me)
-					.attr("aria-checked", "false")
-					.removeClass(CLASSES.checked)
-					.addClass(CLASSES.mixed);
+				me.setAttribute("aria-checked", "false");
+				me.className = CLASSES.triStateCheckbox + " " + CLASSES.mixed + (state.enabled ? "" : CLASSES.disabled);
 			} else {
 				state.checked = true;
-				$(me)
-					.attr("aria-checked", "true")
-					.removeClass(CLASSES.mixed)
-					.addClass(CLASSES.checked);
+				me.setAttribute("aria-checked", "true");
+				me.className = CLASSES.triStateCheckbox + " " + CLASSES.checked  + (state.enabled ? "" : CLASSES.disabled);
 			}
 			
 			if( !initializing )
@@ -91,13 +87,13 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 		if( initializing || val != state.enabled ) {
 			if( val ) {
 				state.enabled = true;
+				me.setAttribute("aria-disabled", "false");
 				$(me)
-					.attr("aria-disabled", "false")
 					.removeClass(CLASSES.disabled);
 			} else {
 				state.enabled = false;
+				me.setAttribute("aria-disabled", "true");
 				$(me)
-					.attr("aria-disabled", "true")
 					.addClass(CLASSES.disabled);
 			}
 			
