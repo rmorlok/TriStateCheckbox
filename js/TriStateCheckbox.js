@@ -64,15 +64,15 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 			if( !val || val === "false" ) {
 				state.checked = false;
 				me.setAttribute("aria-checked", "false");
-				me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : CLASSES.disabled);
+				me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : " " + CLASSES.disabled);
 			} else if( val === "mixed" ) {
 				state.checked = "mixed";
 				me.setAttribute("aria-checked", "false");
-				me.className = CLASSES.triStateCheckbox + " " + CLASSES.mixed + (state.enabled ? "" : CLASSES.disabled);
+				me.className = CLASSES.triStateCheckbox + " " + CLASSES.mixed + (state.enabled ? "" : " " + CLASSES.disabled);
 			} else {
 				state.checked = true;
 				me.setAttribute("aria-checked", "true");
-				me.className = CLASSES.triStateCheckbox + " " + CLASSES.checked  + (state.enabled ? "" : CLASSES.disabled);
+				me.className = CLASSES.triStateCheckbox + " " + CLASSES.checked  + (state.enabled ? "" : " " + CLASSES.disabled);
 			}
 			
 			if( !initializing )
