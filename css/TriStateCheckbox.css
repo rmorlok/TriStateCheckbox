@@ -18,38 +18,38 @@ a.TriStateCheckbox:hover {
 	color: red;
 }
 
-a.TriStateCheckbox.disabled,
-a.TriStateCheckbox.disabled:hover {
+a.TriStateCheckboxDisabled,
+a.TriStateCheckboxDisabled:hover {
 	background-position: 0 0;
 }
 
-a.TriStateCheckbox.checked.disabled,
-a.TriStateCheckbox.checked.disabled:hover {
+a.TriStateCheckboxCheckedDisabled,
+a.TriStateCheckboxCheckedDisabled:hover {
 	background-position: 0 -78px;
 }
 
-a.TriStateCheckbox.mixed {
+a.TriStateCheckboxMixed {
 	background-position: 0 -52px;
 }
 
-a.TriStateCheckbox.mixed:hover {
+a.TriStateCheckboxMixed:hover {
 	background-position: 0 -65px;
 }
 
-a.TriStateCheckbox.mixed.disabled,
-a.TriStateCheckbox.mixed.disabled:hover {
+a.TriStateCheckboxMixedDisabled,
+a.TriStateCheckboxMixedDisabled:hover {
 	background-position: 0 -39px;
 }
 
-a.TriStateCheckbox.checked {
+a.TriStateCheckboxChecked {
 	background-position: 0 -91px;
 }
 
-a.TriStateCheckbox.checked:hover {
+a.TriStateCheckboxChecked:hover {
 	background-position: 0 -104px;
 }
 
-a.TriStateCheckbox.checked.disabled,
-a.TriStateCheckbox.checked.disabled:hover {
+a.TriStateCheckboxCheckedDisabled,
+a.TriStateCheckboxCheckedDisabled:hover {
 	background-position: 0 -78px;
 }

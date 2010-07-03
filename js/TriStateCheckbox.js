@@ -12,9 +12,9 @@ if( typeof window.SteelUnderpants === "undefined")
 
 CLASSES = {
 	triStateCheckbox: "TriStateCheckbox",
-	checked: "checked",
-	mixed: "mixed",
-	disabled: "disabled"
+	checked: "Checked",
+	mixed: "Mixed",
+	disabled: "Disabled"
 };
 
 EVENTS = {
@@ -51,6 +51,16 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 	
 	checked(state.checked, true);
 	enabled(state.enabled, true);
+	
+	function setClassName(checked, enabled) {
+		if( !val || val === "false" ) {
+			me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : CLASSES.disabled);
+		} else if( val === "mixed" ) {
+			me.className = CLASSES.triStateCheckbox + CLASSES.mixed + (state.enabled ? "" : CLASSES.disabled);
+		} else {
+			me.className = CLASSES.triStateCheckbox + CLASSES.checked  + (state.enabled ? "" : CLASSES.disabled);
+		}
+	}
 	
 	function checked(val, initializing) {
 		if( typeof val === "undefined" )
