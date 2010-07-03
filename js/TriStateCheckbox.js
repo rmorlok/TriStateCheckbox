@@ -53,12 +53,12 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 	enabled(state.enabled, true);
 	
 	function setClassName(checked, enabled) {
-		if( !val || val === "false" ) {
-			me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : CLASSES.disabled);
-		} else if( val === "mixed" ) {
-			me.className = CLASSES.triStateCheckbox + CLASSES.mixed + (state.enabled ? "" : CLASSES.disabled);
+		if( !checked || checked === "false" ) {
+			me.className = CLASSES.triStateCheckbox + " " + CLASSES.triStateCheckbox  + (state.enabled ? "" : CLASSES.disabled);
+		} else if( checked === "mixed" ) {
+			me.className = CLASSES.triStateCheckbox + " " + CLASSES.triStateCheckbox + CLASSES.mixed + (state.enabled ? "" : CLASSES.disabled);
 		} else {
-			me.className = CLASSES.triStateCheckbox + CLASSES.checked  + (state.enabled ? "" : CLASSES.disabled);
+			me.className = CLASSES.triStateCheckbox + " " + CLASSES.triStateCheckbox + CLASSES.checked  + (state.enabled ? "" : CLASSES.disabled);
 		}
 	}
 	
@@ -74,16 +74,15 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 			if( !val || val === "false" ) {
 				state.checked = false;
 				me.setAttribute("aria-checked", "false");
-				me.className = CLASSES.triStateCheckbox  + (state.enabled ? "" : " " + CLASSES.disabled);
 			} else if( val === "mixed" ) {
 				state.checked = "mixed";
 				me.setAttribute("aria-checked", "false");
-				me.className = CLASSES.triStateCheckbox + " " + CLASSES.mixed + (state.enabled ? "" : " " + CLASSES.disabled);
 			} else {
 				state.checked = true;
 				me.setAttribute("aria-checked", "true");
-				me.className = CLASSES.triStateCheckbox + " " + CLASSES.checked  + (state.enabled ? "" : " " + CLASSES.disabled);
 			}
+			
+			setClassName(state.checked, state.enabled);
 			
 			if( !initializing )
 				$(me).trigger(EVENTS.checked);
@@ -98,14 +97,12 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 			if( val ) {
 				state.enabled = true;
 				me.setAttribute("aria-disabled", "false");
-				$(me)
-					.removeClass(CLASSES.disabled);
 			} else {
 				state.enabled = false;
 				me.setAttribute("aria-disabled", "true");
-				$(me)
-					.addClass(CLASSES.disabled);
 			}
+			
+			setClassName(state.checked, state.enabled);
 			
 			if( !initializing )
 				$(me).trigger(EVENTS.enabled);
