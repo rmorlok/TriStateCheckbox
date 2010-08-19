@@ -9,6 +9,7 @@ a.TriStateCheckbox {
 	background: url(../images/checkboxes.gif) no-repeat 0 -13px;
 	width: 13px;
 	height: 13px;
+	border: none;
 	display: inline-block;
 	overflow: hidden;
 }
