@@ -5,7 +5,7 @@
  * Released under the MIT, BSD, and GPL Licenses.
  * 
  */
-(function(window, $) {
+(function(window, document, $) {
 
 if( typeof window.SteelUnderpants === "undefined")
 	window.SteelUnderpants = {};
@@ -115,4 +115,4 @@ window.SteelUnderpants.TriStateCheckbox = function(options) {
 	return me;
 }
 
-})(window, jQuery);
+})(window, document, jQuery);
