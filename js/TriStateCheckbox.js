@@ -10,14 +10,14 @@
 if( typeof window.SteelUnderpants === "undefined")
 	window.SteelUnderpants = {};
 
-CLASSES = {
+var CLASSES = {
 	triStateCheckbox: "TriStateCheckbox",
 	checked: "Checked",
 	mixed: "Mixed",
 	disabled: "Disabled"
 };
 
-EVENTS = {
+var EVENTS = {
 	clicked: "clicked",
 	checked: "checked",
 	enabled: "enabled"
